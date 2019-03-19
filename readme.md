@@ -22,11 +22,11 @@ Do not continue until this is successful.
 - `terraform apply -auto-approve`
 - Once terraform successfully builds DCOS cluster, install the `dcos cli` as per blog instructions.
 - Update AWS security group `dcos-pangeo-lab-admin-firewall` to allow port 6443.
-- Install Portworx `dcos package install portworx --options=px_ectd_6nodes.json --yes`
+- Install Portworx (wait for completion) `dcos package install portworx --options=px_ectd_6nodes.json --yes`
 - Install Marathon-lb `dcos package install marathon-lb --yes`
 - Add Kubernetes API application `dcos marathon app add mlb-kube-app-api.json`
 - Install Kubernetes Cluster Manager `dcos package install kubernetes --yes`
-- Install Kubernetes Cluster `dcos kubernetes cluster create --options=kubernetes1-options-oss.json --yes`
+- Install Kubernetes Cluster (wait for completion) `dcos kubernetes cluster create --options=kubernetes1-options-oss.json --yes`
 - Get Kubernetes version `version=$(kubectl version --short | awk -Fv '/Server Version: / {print $3}')`
 - Create Portworx Kubernetes `kubectl apply -f "https://install.portworx.com?kbver=${version}&dcos=true&stork=true"`
 - Create Portwork Kubernetes Storage Class `kubectl create -f portworx-sc.yaml`
