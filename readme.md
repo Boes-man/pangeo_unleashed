@@ -21,7 +21,20 @@ Do not continue until this is successful.
 - `terraform apply -auto-approve`
 - Once terraform successfully builds DCOS cluster, install the `dcos cli` as per blog instructions.
 - Update AWS security group `dcos-pangeo-lab-admin-firewall` to allow port 6443.
-- Run `dcos package install portworx --options=px_ectd_6nodes.json --yes`
+- Install Portworx `dcos package install portworx --options=px_ectd_6nodes.json --yes`
+- Install Marathon-lb `dcos package install marathon-lb --yes`
+- Add Kubernetes API application `dcos marathon app add mlb-kube-app-api.json`
+- Install Kubernetes Cluster Manager `dcos package install kubernetes --yes`
+- Install Kubernetes Cluster `dcos kubernetes cluster create --options=kubernetes1-options-oss.json --yes`
+- Get Kubernetes version `version=$(kubectl version --short | awk -Fv '/Server Version: / {print $3}')`
+- Create Portworx Kubernetes `kubectl apply -f "https://install.portworx.com?kbver=${version}&dcos=true&stork=true"`
+- Create Portwork Kubernetes Storage Class `kubectl create -f portworx-sc.yaml`
+- Set default storage class `kubectl patch storageclass portworx-sc -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'`
+- Get Marathon-lb agent id `mlb_id=$(dcos task marathon-lb --json |  jq -r '.[] | .slave_id')`
+- Get Marathon-lb public IP `mlb_ip=$(dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$mlb_id "curl -s ifconfig.co |  tr -d '\r'")`
+- Create KubeConfig `dcos kubernetes cluster kubeconfig --cluster-name=kubernetes-cluster1 --apiserver-url https://$mlb_ip:6443 --insecure-skip-tls-verify`
+- Start kubectl proxy `kubectl proxy`
+
 
 
 
