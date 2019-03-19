@@ -15,7 +15,15 @@ See Mesosphere [documentation](https://docs.mesosphere.com/1.12/installing/evalu
 - Ensure all prerequisites are installed, that AWS CLI `aws configure --profile=<your-profile-name>` (access key, secret access key, region, etc) is complete and that AWS_PROFILE is set `export AWS_PROFILE="<your-AWS-profile>`
 Do not continue until this is successful.
 
-- 
+- Clone this git repo to your computer `git clone https://github.com/Boes-man/pangeo_unleashed.git`
+- Edit `main.tf` with correct `availability_zones`, if need be and `ssh_public_key_file`
+- `terraform init`
+- `terraform apply -auto-approve`
+- Once terraform successfully builds DCOS cluster, install the `dcos cli` as per blog instructions.
+- Update AWS security group `dcos-pangeo-lab-admin-firewall` to allow port 6443.
+- Run `dcos package install portworx  --options=px_ectd_6nodes.json --yes`
+
+
 
 - A running [DC/OS 1.11](https://dcos.io/releases/) or higher cluster with at least 4 private agents and 1 public agent each with 2 CPUs and 5 GB of RAM available as well as the [DC/OS CLI](https://docs.mesosphere.com/1.11/cli/) installed in version 0.14 or higher.
 - The JSON query util [jq](https://github.com/stedolan/jq/wiki/Installation) must be installed.
