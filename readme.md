@@ -5,9 +5,10 @@ This used with the [Pangeo Unleashed](https://medium.com/p/5cdfc2c045f4/edit) bl
 ## Prerequisites:
 - Terraform
 - AWS CLI
-- [jq] (https://stedolan.github.io/jq/)
-- [Helm] (https://helm.sh/docs/using_helm/)
-See Mesosphere [documentation] (https://docs.mesosphere.com/1.12/installing/evaluation/aws/)
+- [jq](https://stedolan.github.io/jq/)
+- [Helm] https://helm.sh/docs/using_helm/)
+
+See Mesosphere [documentation](https://docs.mesosphere.com/1.12/installing/evaluation/aws/)
 
 ## Steps
 
