@@ -1,0 +1,14 @@
+{
+  "kubernetes": {
+    "private_node_count": 6,
+    "private_reserved_resources": {
+      "kube_cpus": 4,
+      "kube_disk": 10240,
+      "kube_mem": 8192
+    },
+    "public_node_count": 1
+  },
+  "service": {
+    "name": "kubernetes-cluster1"
+  }
+}
