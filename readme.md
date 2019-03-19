@@ -21,7 +21,7 @@ Do not continue until this is successful.
 - `terraform apply -auto-approve`
 - Once terraform successfully builds DCOS cluster, install the `dcos cli` as per blog instructions.
 - Update AWS security group `dcos-pangeo-lab-admin-firewall` to allow port 6443.
-- Run `dcos package install portworx  --options=px_ectd_6nodes.json --yes`
+- Run `dcos package install portworx --options=px_ectd_6nodes.json --yes`
 
 
 
