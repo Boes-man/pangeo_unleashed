@@ -16,6 +16,7 @@ See Mesosphere [documentation](https://docs.mesosphere.com/1.12/installing/evalu
 Do not continue until this is successful.
 
 - Clone this git repo to your computer `git clone https://github.com/Boes-man/pangeo_unleashed.git`
+- Make scripts executable `chmod +x *.sh` 
 - Edit `main.tf` with correct `availability_zones`, if need be and `ssh_public_key_file`
 - `terraform init`
 - `terraform apply -auto-approve`
