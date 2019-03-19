@@ -1,7 +1,6 @@
-# Iot Fast Data analytics
+# Pangeo Unleashed Lab Github
 
-Or how to run the SMACK stack on DC/OS with a stream of data.
-This showcase is contributed by [Achim Nierbeck from codecentric](https://blog.codecentric.de/en/author/achim-nierbeck/), details can be found in the following blog posts:
+This used with the [Pangeo Unleashed](https://medium.com/p/5cdfc2c045f4/edit) blog and is a step by step version, without the extra context of the original blog. The idea would be to copy and paste the commands in sequence.
 
  - [Iot Analytics Platform](https://blog.codecentric.de/en/2016/07/iot-analytics-platform/)
  - [SMACK Stack - DC/OS Style](https://blog.codecentric.de/en/2016/08/smack-stack-dcos-style/)
