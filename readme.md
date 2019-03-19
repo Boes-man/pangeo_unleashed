@@ -2,42 +2,19 @@
 
 This used with the [Pangeo Unleashed](https://medium.com/p/5cdfc2c045f4/edit) blog and is a step by step version, without the extra context of the original blog. The idea would be to copy and paste the commands in sequence.
 
- - [Iot Analytics Platform](https://blog.codecentric.de/en/2016/07/iot-analytics-platform/)
- - [SMACK Stack - DC/OS Style](https://blog.codecentric.de/en/2016/08/smack-stack-dcos-style/)
+## Prerequisites:
+- Terraform
+- AWS CLI
+- [jq] (https://stedolan.github.io/jq/)
+- [Helm] (https://helm.sh/docs/using_helm/)
+See Mesosphere [documentation] (https://docs.mesosphere.com/1.12/installing/evaluation/aws/)
 
-Code used in this demo can be found in the following code repository:
+## Steps
 
- - [github.com/ANierbeck/BusFloatingData](https://github.com/ANierbeck/BusFloatingData)
+- Ensure all prerequisites are installed, that AWS CLI "aws configure --profile=<your-profile-name>" (access key, secret access key, region, etc) is complete and that AWS_PROFILE is set " export AWS_PROFILE="<your-AWS-profile>" "
+Do not continue until this is successful.
 
-In short, with this showcase you'll receive live data from the Los Angeles METRO API.
-The data is streamed to Apache Kafka and consumed by Apache Spark and an Akka application.
-
-NOTE: As we are using live data from Los Angeles, there might be very few buses on the map during night in the PDT timezone.
-
-**Table of Contents**
-
-- [Architecture](#architecture)
-- [Prerequisites](#prerequisites)
-- [Install](#install) the demo
-- [Use](#use) the demo
-
-## Architecture
-This is just an excerpt of details to be found in the following blog [Iot Analytics Platform](https://blog.codecentric.de/en/2016/07/iot-analytics-platform/)
-The architecture splits into the following parts:
-- Ingest – Akka
-- Digest – Spark
-- Backend – Akka
-- UI – Javascript, Openstreetmap
-
-![Iot Analytic Platform Architecture](img/ImageArchitecture.png)
-
-The **ingestion** retrieves the data from an REST endpoint at the Los Angeles METRO API, and streams this
-data into the Kafka. From there the data is **digested** by a Spark streaming job, and stored in a Cassandra NoSQL database.
-This data which has been transformed for Cassandra (see blog post for the why), is now send back again to Kafka
-and consumed by an Akka backendsystem. The UI Uses either REST or Websockets to retrieve the data from Cassandra
-or Kafka via the Akka backendsystem.
-
-## Prerequisites
+- 
 
 - A running [DC/OS 1.11](https://dcos.io/releases/) or higher cluster with at least 4 private agents and 1 public agent each with 2 CPUs and 5 GB of RAM available as well as the [DC/OS CLI](https://docs.mesosphere.com/1.11/cli/) installed in version 0.14 or higher.
 - The JSON query util [jq](https://github.com/stedolan/jq/wiki/Installation) must be installed.
