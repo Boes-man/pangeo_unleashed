@@ -13,7 +13,7 @@ See Mesosphere [documentation](https://docs.mesosphere.com/1.12/installing/evalu
 
 ## Steps
 
-- Ensure all prerequisites are installed, that AWS CLI `aws configure --profile=<your-profile-name>` (access key, secret access key, region, etc) is complete and that AWS_PROFILE is set `export AWS_PROFILE="<your-AWS-profile>`
+- Ensure all prerequisites are installed, that AWS CLI `aws configure --profile=<your-profile-name>` (access key, secret access key, region, etc) is complete and that AWS_PROFILE is set `export AWS_PROFILE="<your-AWS-profile>"`
 Do not continue until this is successful.
 
 - Clone this git repo to your computer `git clone https://github.com/Boes-man/pangeo_unleashed.git`
