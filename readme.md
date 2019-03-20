@@ -34,7 +34,7 @@ Do not continue until this is successful.
 - Get Marathon-lb agent id `mlb_id=$(dcos task marathon-lb. --json |  jq -r '.[] | .slave_id')`
 - Get Marathon-lb public IP `mlb_ip=$(dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$mlb_id "curl -s ifconfig.co |  tr -d '\r'")`
 - Create KubeConfig `dcos kubernetes cluster kubeconfig --cluster-name=kubernetes-cluster1 --apiserver-url https://$mlb_ip:6443 --insecure-skip-tls-verify`
-- Start kubectl proxy `kubectl proxy`
+- Start kubectl proxy in a new or diffrent console window `kubectl proxy`
 - Get Kubernetes version `version=$(kubectl version --short | awk -Fv '/Server Version: / {print $3}')`
 - Create Portworx Kubernetes `kubectl apply -f "https://install.portworx.com?kbver=${version}&dcos=true&stork=true"`
 - Create Portwork Kubernetes Storage Class `kubectl create -f portworx-sc.yaml`
@@ -44,4 +44,4 @@ Do not continue until this is successful.
 - Install Treafik Ingress Controller `./k8_create_treafik.sh`
 - Create Pangeo ingress `kubectl create -f pgeo_proxy-ingress.yaml --namespace=pangeo`
 - Get Ingress agent id `pangeo_id=$(dcos task kube-node-public --json |  jq -r '.[] | .slave_id')`
-- Get Pangeo IP `pangeo_ip=$(dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$pangeo_id "curl -s ifconfig.co |  tr -d '\r'")`
+- Get Pangeo IP `dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$pangeo_id "curl -s ifconfig.co |  tr -d '\r'"`
