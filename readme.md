@@ -1,6 +1,6 @@
 # Pangeo Unleashed Lab Github
 
-This used with the [Pangeo Unleashed](https://medium.com/p/5cdfc2c045f4/edit) blog and is a step by step version, without the extra context of the original blog. The idea would be to copy and paste the commands in sequence.
+This repo is used with the [Pangeo Unleashed](https://medium.com/p/5cdfc2c045f4/edit) blog and is a step by step version, without the extra context of the original blog. The idea would be to copy and paste the commands in sequence.
 
 ## Prerequisites:
 - Terraform
