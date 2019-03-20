@@ -29,14 +29,14 @@ Do not continue until this is successful.
 - Install Kubernetes Cluster Manager `dcos package install kubernetes --yes`
 - Install Kubernetes Cluster `dcos kubernetes cluster create --options=kubernetes1-options-oss.json --yes`
 - Wait for Kubernetes Cluster to complete `dcos kubernetes cluster debug plan status deploy --cluster-name=kubernetes-cluster1`
-- Get Kubernetes version `version=$(kubectl version --short | awk -Fv '/Server Version: / {print $3}')`
-- Create Portworx Kubernetes `kubectl apply -f "https://install.portworx.com?kbver=${version}&dcos=true&stork=true"`
-- Create Portwork Kubernetes Storage Class `kubectl create -f portworx-sc.yaml`
-- Set default storage class `kubectl patch storageclass portworx-sc -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'`
 - Get Marathon-lb agent id `mlb_id=$(dcos task marathon-lb --json |  jq -r '.[] | .slave_id')`
 - Get Marathon-lb public IP `mlb_ip=$(dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$mlb_id "curl -s ifconfig.co |  tr -d '\r'")`
 - Create KubeConfig `dcos kubernetes cluster kubeconfig --cluster-name=kubernetes-cluster1 --apiserver-url https://$mlb_ip:6443 --insecure-skip-tls-verify`
 - Start kubectl proxy `kubectl proxy`
+- Get Kubernetes version `version=$(kubectl version --short | awk -Fv '/Server Version: / {print $3}')`
+- Create Portworx Kubernetes `kubectl apply -f "https://install.portworx.com?kbver=${version}&dcos=true&stork=true"`
+- Create Portwork Kubernetes Storage Class `kubectl create -f portworx-sc.yaml`
+- Set default storage class `kubectl patch storageclass portworx-sc -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'`
 - Prep kubernetes for Helm `./2_configure_kubernetes.sh`
 - Install Pangeo with Helm `./3_deploy_helm.sh`
 - Install Treafik Ingress Controller `./k8_create_treafik.sh`
