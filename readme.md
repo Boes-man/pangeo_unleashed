@@ -27,7 +27,6 @@ Do not continue until this is successful.
 - Set cluster endpoint to https `dcos config set core.dcos_url https://your_cluster_fqdn_above` eg dcos config set core.dcos_url https://pangeo-lab-1478824809.us-west-2.elb.amazonaws.com
 - Disable SSL verification `dcos config set core.ssl_verify false`
 - Install Portworx `dcos package install portworx --options=px_ectd_6nodes.json --yes`
-- Wait for Portworx deployment to complete `dcos portworx plan status deploy`
 - Install Marathon-lb `dcos package install marathon-lb --yes`
 - Add Kubernetes API application `dcos marathon app add mlb-kube-app-api.json`
 - Install Kubernetes Cluster Manager `dcos package install kubernetes --yes`
@@ -37,6 +36,7 @@ Do not continue until this is successful.
 - Get Marathon-lb public IP `mlb_ip=$(dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$mlb_id "curl -s ifconfig.co |  tr -d '\r'")`
 - Create KubeConfig `dcos kubernetes cluster kubeconfig --cluster-name=kubernetes-cluster1 --apiserver-url https://$mlb_ip:6443 --insecure-skip-tls-verify`
 - Start kubectl proxy in a new or diffrent console window `kubectl proxy`
+- Access the Kubernetes Dashboard via your browser `http://127.0.0.1:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/`
 - Get Kubernetes version `version=$(kubectl version --short | awk -Fv '/Server Version: / {print $3}')`
 - Create Portworx Kubernetes `kubectl apply -f "https://install.portworx.com?kbver=${version}&dcos=true&stork=true"`
 - Create Portwork Kubernetes Storage Class `kubectl create -f portworx-sc.yaml`
@@ -47,3 +47,4 @@ Do not continue until this is successful.
 - Create Pangeo ingress `kubectl create -f pgeo_proxy-ingress.yaml --namespace=pangeo`
 - Get Ingress agent id `pangeo_id=$(dcos task kube-node-public --json |  jq -r '.[] | .slave_id')`
 - Get Pangeo IP `dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$pangeo_id "curl -s ifconfig.co |  tr -d '\r'"`
+- Browse to Pangeo http://ip_from_previous_step
