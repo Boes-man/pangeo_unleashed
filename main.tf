@@ -12,7 +12,15 @@ data "http" "whatismyip" {
   url = "http://whatismyip.akamai.com/"
 }
 
+provider "aws" {
+  region = "us-west-2"
+}
+
 module "dcos" {
+
+  providers = {
+    aws = "aws"
+  }
   source = "dcos-terraform/dcos/aws"
   availability_zones = ["us-west-2a","us-west-2b","us-west-2c"]
 
@@ -34,6 +42,7 @@ module "dcos" {
   num_masters        = "3"
   num_private_agents = "6"
   num_public_agents  = "2"
+  public_agents_additional_ports = ["6443"]
 
   dcos_version = "1.12.2"
   dcos_security = "permissive"
