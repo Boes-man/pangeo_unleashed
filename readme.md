@@ -5,6 +5,7 @@ This repo is used with the [Pangeo Unleashed](https://medium.com/p/5cdfc2c045f4/
 ## Prerequisites:
 - Terraform
 - AWS CLI
+- SSH
 - [jq](https://stedolan.github.io/jq/)
 - [Helm](https://helm.sh/docs/using_helm/)
 
