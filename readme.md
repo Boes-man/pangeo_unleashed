@@ -23,8 +23,8 @@ Do not continue until this is successful.
 - `terraform init`
 - `terraform apply -auto-approve`
 - Once terraform successfully builds DCOS cluster, install the `dcos cli` as per blog instructions.
-- Get cluster endpoint `dcos config show core.dcos_url`
-- Set cluster endpoint to https `dcos config set core.dcos_url https://your_cluster_fqdn_above`
+- Get cluster endpoint `dcos config show core.dcos_url` eg http://pangeo-lab-1478824809.us-west-2.elb.amazonaws.com
+- Set cluster endpoint to https `dcos config set core.dcos_url https://your_cluster_fqdn_above` eg dcos config set core.dcos_url https://pangeo-lab-1478824809.us-west-2.elb.amazonaws.com
 - Update AWS security group `dcos-pangeo-lab-admin-firewall` to allow port 6443.
 - Install Portworx `dcos package install portworx --options=px_ectd_6nodes.json --yes`
 - Wait for Portworx deployment to complete `dcos portworx plan status deploy`
