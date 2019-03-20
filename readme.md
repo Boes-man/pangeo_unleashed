@@ -26,7 +26,7 @@ Do not continue until this is successful.
 - Install Marathon-lb `dcos package install marathon-lb --yes`
 - Add Kubernetes API application `dcos marathon app add mlb-kube-app-api.json`
 - Install Kubernetes Cluster Manager `dcos package install kubernetes --yes`
-- Install Kubernetes Cluster (wait for completion) `dcos kubernetes cluster create --options=kubernetes1-options-oss.json --yes`
+- Install Kubernetes Cluster (wait for completion) `dcos kubernetes cluster create --options=kubernetes1-options-oss.json --yes`
 - Get Kubernetes version `version=$(kubectl version --short | awk -Fv '/Server Version: / {print $3}')`
 - Create Portworx Kubernetes `kubectl apply -f "https://install.portworx.com?kbver=${version}&dcos=true&stork=true"`
 - Create Portwork Kubernetes Storage Class `kubectl create -f portworx-sc.yaml`
@@ -41,4 +41,3 @@ Do not continue until this is successful.
 - Create Pangeo ingress `kubectl create -f pgeo_proxy-ingress.yaml --namespace=pangeo`
 - Get Ingress agent id `pangeo_id=$(dcos task kube-node-public --json |  jq -r '.[] | .slave_id')`
 - Get Pangeo IP `pangeo_ip=$(dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$pangeo_id "curl -s ifconfig.co |  tr -d '\r'")`
-
