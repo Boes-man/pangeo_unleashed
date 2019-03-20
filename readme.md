@@ -29,7 +29,7 @@ Do not continue until this is successful.
 - Install Kubernetes Cluster Manager `dcos package install kubernetes --yes`
 - Install Kubernetes Cluster `dcos kubernetes cluster create --options=kubernetes1-options-oss.json --yes`
 - Wait for Kubernetes Cluster to complete `dcos kubernetes cluster debug plan status deploy --cluster-name=kubernetes-cluster1`
-- Get Marathon-lb agent id `mlb_id=$(dcos task marathon-lb --json |  jq -r '.[] | .slave_id')`
+- Get Marathon-lb agent id `mlb_id=$(dcos task marathon-lb. --json |  jq -r '.[] | .slave_id')`
 - Get Marathon-lb public IP `mlb_ip=$(dcos node ssh --option StrictHostKeyChecking=no --option LogLevel=quiet --master-proxy --user centos --mesos-id=$mlb_id "curl -s ifconfig.co |  tr -d '\r'")`
 - Create KubeConfig `dcos kubernetes cluster kubeconfig --cluster-name=kubernetes-cluster1 --apiserver-url https://$mlb_ip:6443 --insecure-skip-tls-verify`
 - Start kubectl proxy `kubectl proxy`
