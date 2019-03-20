@@ -25,7 +25,7 @@ Do not continue until this is successful.
 - Once terraform successfully builds DCOS cluster, install the `dcos cli` as per blog instructions.
 - Get cluster endpoint `dcos config show core.dcos_url` eg http://pangeo-lab-1478824809.us-west-2.elb.amazonaws.com
 - Set cluster endpoint to https `dcos config set core.dcos_url https://your_cluster_fqdn_above` eg dcos config set core.dcos_url https://pangeo-lab-1478824809.us-west-2.elb.amazonaws.com
-- Disable SSL verification `dcos config set core.ssl_verify false``
+- Disable SSL verification `dcos config set core.ssl_verify false`
 - A reauthentication will be required `dcos auth login`
 - Install Portworx `dcos package install portworx --options=px_ectd_6nodes.json --yes`
 - Install Marathon-lb `dcos package install marathon-lb --yes`
