@@ -17,7 +17,7 @@ Do not continue until this is successful.
 
 - Clone this git repo to your computer `git clone https://github.com/Boes-man/pangeo_unleashed.git`
 - Make scripts executable `chmod +x *.sh` 
-- Edit `main.tf` with correct `availability_zones`, if need be and `ssh_public_key_file`
+- Edit `main.tf` with correct `availability_zones` list and `region`, if need be and `ssh_public_key_file`
 - `terraform init`
 - `terraform apply -auto-approve`
 - Once terraform successfully builds DCOS cluster, install the `dcos cli` as per blog instructions.
