@@ -22,6 +22,7 @@ module "dcos" {
     aws = "aws"
   }
   source = "dcos-terraform/dcos/aws"
+  version = "~> 0.1.0"
   availability_zones = ["us-west-2a","us-west-2b","us-west-2c"]
 
   dcos_instance_os    = "centos_7.5"
