@@ -3,7 +3,7 @@
 This repo is used with the [Pangeo Unleashed](https://medium.com/p/5cdfc2c045f4/edit) blog and is a step by step version, without the extra context of the original blog. The idea would be to copy and paste the commands in sequence.
 
 ## Prerequisites:
-- Terraform
+- [Terraform](https://docs.mesosphere.com/1.10/installing/evaluation/aws/#install-terraform)
 - AWS CLI
 - SSH
 - [jq](https://stedolan.github.io/jq/)
